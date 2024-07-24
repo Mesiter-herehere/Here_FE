@@ -6,22 +6,21 @@ export const Main = styled.div`
 
 export const Textbox = styled.div`
   width: 90vw;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: -92px;
   display: inline-block;
 
   @media (max-width: 1153px) {
     width: 10vw;
-    margin-left: -370px;
+    margin-left: -429px;
   }
 `
 
 export const Title = styled.span`
-  display: block;  /* Ensure the span is treated as a block-level element */
+  display: block;
   width: 125px;
   height: 43px;
   margin-left: 560px;
-  margin-top: 141px;  /* Set margins as per the Zeplin code */
+  margin-top: 141px;
   font-family: Pretendard;
   font-size: 36px;
   font-weight: bold;
