@@ -20,7 +20,6 @@ function Signin(){
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
         const dto = {
             email: emailValue,
             password: passwordValue,
