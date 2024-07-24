@@ -9,6 +9,8 @@ function Signin(){
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
 
+    const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
+
     const handlePasswordChange = (e: any) => {
         setPasswordValue(e.target.value);
     };
@@ -16,6 +18,64 @@ function Signin(){
     const handleEmailChange = (e: any) => {
         setEmailValue(e.target.value);
     };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const dto = {
+            email: emailValue,
+            password: passwordValue,
+        };
+
+        try{
+            const response = await axios.post("/api/Signin", dto,
+            {
+                headers: {
+                    "content-Type" : "application/json",
+                },
+                withCredentials : true,
+            }
+        )
+
+        if(response.status === 200){
+            const {access, refresh} = response.data;
+
+            localStorage.setItem("access_token", access);
+            localStorage.setItem("refresh_token", refresh);
+
+            setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000)
+        }
+        }
+
+        catch{
+            console.log("error");
+        }
+
+
+        //토큰 갱신
+        const onSilentRefresh = async (accessToken: string) => {
+            try {
+              const response = await axios.post("api/refresh", { access_token: accessToken },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  withCredentials: true,
+                }
+              );
+        
+              if (response.status === 200) {
+
+                const { access } = response.data;
+        
+                localStorage.setItem("access_token", access);
+        
+                setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
+              }
+            } catch (error: any) {
+              console.error("Error while refreshing token:", error);
+            }
+          };
+    }
 
     return(
         <>
@@ -28,6 +88,8 @@ function Signin(){
 
             <S.emailinput value={emailValue} onChange={handleEmailChange} placeholder="아이디를 입력해주세요." />
             <S.psinput value={passwordValue} onChange={handlePasswordChange} placeholder="비밀번호를 입력해주세요." />
+
+            <S.Loginbutton>로그인</S.Loginbutton>
         </>
     );
 }

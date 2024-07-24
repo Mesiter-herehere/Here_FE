@@ -6,8 +6,7 @@ export const Main = styled.div`
 
 export const Textbox = styled.div`
   width: 90vw;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: -60px;
   display: inline-block;
 
   @media (max-width: 1153px) {
@@ -57,7 +56,7 @@ export const emailinput = styled.input`
   padding: 0 30px;
   border-radius: 8px;
   background-color: #242630;
-  margin-left: 560px;
+  margin-left: 498px;
   color: white;
 
   @media (max-width: 1153px) {
@@ -68,11 +67,11 @@ export const emailinput = styled.input`
 export const psinput = styled.input`
   width: 712px;
   height: 56px;
-  margin-top: 23px;
+  margin-top: 18px;
   padding: 0 30px;
   border-radius: 8px;
   background-color: #242630;
-  margin-left: 560px;
+  margin-left: 498px;
   color: white;
 
   @media (max-width: 1153px) {
@@ -80,17 +79,15 @@ export const psinput = styled.input`
   }
 `
 
-export const Signbutton = styled.button`
+export const Loginbutton = styled.button`
+  display: block;
   width: 177px;
   height: 60px;
-  margin-top: 35px;
-  margin-left: 1158px;
+  margin-top: 42px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 18px 54px 18px 53px;
   border-radius: 8px;
   background-color: #1d1f29;
   color: white;
-
-  @media (max-width: 1153px) {
-    margin-left: 787px;
-  }
 `

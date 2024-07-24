@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
-  height: 140vh;
+  height: 150vh;
 `
 
 export const Textbox = styled.div`
@@ -128,13 +128,13 @@ export const Signbutton = styled.button`
   width: 177px;
   height: 60px;
   margin-top: 35px;
-  margin-left: 1158px;
+  margin-left: 1064px;
   padding: 18px 54px 18px 53px;
   border-radius: 8px;
   background-color: #1d1f29;
   color: white;
 
   @media (max-width: 1153px) {
-    margin-left: 787px;
+    margin-left: 729px;
   }
 `

@@ -98,7 +98,7 @@ function Signup() {
             </S.name>
 
             <S.Signbutton type="submit" onClick={handleSubmit}>
-                회원가입
+                가입하기
             </S.Signbutton>
         </S.Main>
     );
