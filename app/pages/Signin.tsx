@@ -86,8 +86,8 @@ function Signin(){
                 </S.description>
             </S.Textbox>
 
-            <S.emailinput value={emailValue} onChange={handleEmailChange} placeholder="아이디를 입력해주세요." />
-            <S.psinput value={passwordValue} onChange={handlePasswordChange} placeholder="비밀번호를 입력해주세요." />
+            <S.emailinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="아이디를 입력해주세요." />
+            <S.psinput value={passwordValue} onChange={handlePasswordChange} type="password" placeholder="비밀번호를 입력해주세요." />
 
             <S.Loginbutton>로그인</S.Loginbutton>
         </>
