@@ -35,7 +35,8 @@ function Signup() {
 
         try {
             const response = await axios.post("/api/signup", dto);
-            Router.push("/Siginin");
+            // Router.push("/Siginin");
+            alert("회원가입 성공");
 
         } catch (error) {
             console.log("회원가입 실패:", error);
