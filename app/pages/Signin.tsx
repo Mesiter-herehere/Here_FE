@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from "react";
 import * as S from "../styles/Signin";
@@ -10,7 +10,7 @@ function Signin() {
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
 
-    const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
+    const JWT_EXPIRY_TIME = 24 * 3600 * 1000; 
 
     const handlePasswordChange = (e) => {
         setPasswordValue(e.target.value);
@@ -40,19 +40,17 @@ function Signin() {
 
                 localStorage.setItem("access_token", access);
                 localStorage.setItem("refresh_token", refresh);
-
-                setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
-                router.push("/dashboard");  // 요거만 나중에 바꾸면 끝ㅌ
+                setTimeout(() => onSilentRefresh(refresh), JWT_EXPIRY_TIME - 60000);
+                router.push("/dashboard");
             }
         } catch (error) {
             console.log("로그인 실패:", error);
         }
     };
 
-    // 토큰 갱신
-    const onSilentRefresh = async (accessToken) => {
+    const onSilentRefresh = async (refreshToken) => {
         try {
-            const response = await axios.post("http://localhost:8000/api/refresh", { access_token: accessToken }, {
+            const response = await axios.post("http://localhost:8000/api/refresh", { refresh_token: refreshToken }, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -64,10 +62,11 @@ function Signin() {
 
                 localStorage.setItem("access_token", access);
 
-                setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
+                setTimeout(() => onSilentRefresh(refreshToken), JWT_EXPIRY_TIME - 60000);
             }
         } catch (error) {
             console.error("토큰 갱신 중 오류 발생:", error);
+
         }
     };
 
