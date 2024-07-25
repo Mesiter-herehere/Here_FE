@@ -2,30 +2,29 @@
 
 import React, { useState } from "react";
 import * as S from "../styles/Signup";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
 function Signup() {
     const router = useRouter();
-    const [isInputFocused, setIsInputFocused] = useState(false);
     const [schoolValue, setSchoolValue] = useState("");
     const [nameValue, setNameValue] = useState("");
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
 
-    const handlePasswordChange = (e: any) => {
+    const handlePasswordChange = (e) => {
         setPasswordValue(e.target.value);
     };
 
-    const handleEmailChange = (e: any) => {
+    const handleEmailChange = (e) => {
         setEmailValue(e.target.value);
     };
 
-    const handleNameChange = (e: any) => {
+    const handleNameChange = (e) => {
         setNameValue(e.target.value);
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const dto = {
             school: schoolValue,
@@ -35,10 +34,12 @@ function Signup() {
         };
 
         try {
-            const response = await axios.post("/api/signup", dto);
-            //router.push("/Siginin");
-            alert("회원가입 성공");
-
+            const response = await axios.post("http://localhost:8000/api/signup", dto);
+            if (response.data.status === "success") {
+                router.push("/Signin");
+            } else {
+                console.log("회원가입 실패:", response.data.message);
+            }
         } catch (error) {
             console.log("회원가입 실패:", error);
         }

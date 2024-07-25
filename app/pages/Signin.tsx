@@ -12,15 +12,15 @@ function Signin() {
 
     const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
-    const handlePasswordChange = (e : any) => {
+    const handlePasswordChange = (e) => {
         setPasswordValue(e.target.value);
     };
 
-    const handleEmailChange = (e : any) => {
+    const handleEmailChange = (e) => {
         setEmailValue(e.target.value);
     };
 
-    const handleSubmit = async (e : any) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const dto = {
             email: emailValue,
@@ -50,7 +50,7 @@ function Signin() {
     };
 
     // 토큰 갱신
-    const onSilentRefresh = async (accessToken : any) => {
+    const onSilentRefresh = async (accessToken) => {
         try {
             const response = await axios.post("http://localhost:8000/api/refresh", { access_token: accessToken }, {
                 headers: {
