@@ -84,12 +84,12 @@ function Signup() {
 
             <S.name>
                 <S.des>2. 이름을 알려주세요.</S.des>
-                <S.styledinput value={nameValue} onChange={handleNameChange} type="email" placeholder="ex) 신희성" />
+                <S.styledinput value={nameValue} onChange={handleNameChange} type="text" placeholder="ex) 신희성" />
             </S.name>
 
             <S.name>
                 <S.des>3. 학교 메일을 입력하세요.</S.des>
-                <S.styledinput value={emailValue} onChange={handleEmailChange} type="password" placeholder="ex) 2023036@bssm.hs.kr" />
+                <S.styledinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="ex) 2023036@bssm.hs.kr" />
             </S.name>
 
             <S.name>

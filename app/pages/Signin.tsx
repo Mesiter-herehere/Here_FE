@@ -42,7 +42,8 @@ function Signin(){
             localStorage.setItem("refresh_token", refresh);
 
             setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000)
-        }
+            Router.push("/");
+          }
         }
 
         catch{
