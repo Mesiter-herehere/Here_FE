@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import * as S from "../styles/Signup";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
 function Signup() {
@@ -36,7 +36,7 @@ function Signup() {
 
         try {
             const response = await axios.post("/api/signup", dto);
-            //router.push("/Siginin");
+            router.push("/Siginin");
             alert("회원가입 성공");
 
         } catch (error) {

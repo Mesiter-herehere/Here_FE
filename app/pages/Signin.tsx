@@ -50,7 +50,7 @@ function Signin() {
     };
 
     // 토큰 갱신
-    const onSilentRefresh = async (accessToken : any) => {
+    const onSilentRefresh = async (accessToken : string) => {
         try {
             const response = await axios.post("http://localhost:8000/api/refresh", { access_token: accessToken }, {
                 headers: {
