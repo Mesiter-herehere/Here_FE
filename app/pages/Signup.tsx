@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import * as S from "../styles/Signup";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import axios from "axios";
 
 function Signup() {
+    const router = useRouter();
     const [isInputFocused, setIsInputFocused] = useState(false);
     const [schoolValue, setSchoolValue] = useState("");
     const [nameValue, setNameValue] = useState("");
@@ -35,7 +36,7 @@ function Signup() {
 
         try {
             const response = await axios.post("/api/signup", dto);
-            // Router.push("/Siginin");
+            //router.push("/Siginin");
             alert("회원가입 성공");
 
         } catch (error) {

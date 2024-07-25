@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import * as S from "../styles/Signin";
-import Router from "next/router";
+import  { useRouter } from "next/router";
 import axios from "axios";
 
 function Signin(){
+  const router = useRouter();
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
 
@@ -42,7 +43,7 @@ function Signin(){
             localStorage.setItem("refresh_token", refresh);
 
             setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000)
-            // Router.push("/");
+            //router.push("/");
             alert("로그인 성공");
           }
         }
