@@ -67,7 +67,7 @@ function Signup() {
                     isSelected={schoolValue === "광주소프트웨어마이스터고등학교"}
                     onClick={() => setSchoolValue("광주소프트웨어마이스터고등학교")}
                 >
-                    <S.schoolname>광주소프트웨어마이스터고등학교</S.schoolname>
+                    <S.schoolname>광주소프트웨어마이스터고등학교</S.schoolname> 
                 </S.schooloption>
 
                 <S.schooloption
