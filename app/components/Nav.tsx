@@ -1,10 +1,21 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import * as S from "../styles/Nav";
+import { useState, useEffect } from "react";
 
 
 function Nav(){
     const router = useRouter();
+    const [logined, setLogined] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+            setLogined(true);
+        } else {
+            setLogined(false);
+        }
+    }, []);
 
     function pathsignin(){
         router.push("/Signin");
@@ -15,17 +26,29 @@ function Nav(){
     };
 
     function logomain(){
-        router.push("/Main");
+        router.push("/");
+    }
+
+    function handleLogout() {
+        localStorage.removeItem('access_token');
+        setLogined(false);
+        router.push("/");
     }
 
     return(
         <>
             <S.logo src={"/logo.svg"} onClick={logomain} />
-            <S.pathbox>
-                <S.gosignup onClick={pathsignup}>회원가입</S.gosignup>
-                <S.gologin onClick={pathsignin}>로그인</S.gologin>
-                <S.goline />
-            </S.pathbox>
+            {!logined ? (
+                <S.loginedbox>
+                    <S.introduce>나 소개하기</S.introduce>
+                    <S.gologout onClick={handleLogout}>로그아웃</S.gologout>
+                </S.loginedbox>
+            ) : (
+                <S.pathbox>
+                    <S.gologin onClick={pathsignin}>로그인</S.gologin>
+                    <S.gosignup onClick={pathsignup}>회원가입</S.gosignup>
+                </S.pathbox>
+            )}
         </>
     );
 }
