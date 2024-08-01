@@ -1,8 +1,8 @@
 import React from "react";
-import Signup from "./pages/Signup";
+import Main from "./pages/Main";
 
 const HomePage: React.FC = () => {
-  return <Signup />;
+  return <Main />;
 };
 
 export default HomePage;
