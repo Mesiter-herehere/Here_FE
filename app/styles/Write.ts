@@ -1,3 +1,4 @@
+import { symlink } from "fs";
 import styled from "styled-components";
 
 export const Title = styled.span`
@@ -211,4 +212,24 @@ export const imgspan = styled.span`
     letter-spacing: normal;
     text-align: left;
     color: #6c757d;
+`
+
+export const buttondiv = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100px;
+`
+
+export const submitButton = styled.button`
+    width: 177px;
+    height: 60px;
+    padding: 18px 53px 18px 54px;
+    border-radius: 8px;
+    background-color: #242630;
+    color: white;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
 `

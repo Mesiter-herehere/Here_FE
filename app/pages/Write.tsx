@@ -1,6 +1,6 @@
 'use client'
 
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import * as S from "../styles/Write";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -11,14 +11,15 @@ function Write(){
     const [titleValue, setTitleValue] = useState("");
     const [containValue, setContainValue] = useState("");
 
-    function handleTitleChange(e: string){
-        setTitleValue(titleValue);
+    function handleTitleChange(e: any){
+        setTitleValue(e.target.titleValue);
     }
-    function handleContainChange(e : string){
-        setContainValue(containValue)
+    function handleContainChange(e : any){
+        setContainValue(e.target.containValue)
     }
 
-    const handlesubmit = async (e: any) => {
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
         const dto = {
             Title : titleValue,
             Contain : containValue
@@ -26,6 +27,7 @@ function Write(){
 
         try {
             const response = await axios.post("/api/write", dto);
+            router.push("/");
             
 
         } catch (error) {
@@ -62,6 +64,10 @@ function Write(){
                     <S.imgspan>이미지를 드래그 앤 드롭 또는 직접 업로드 해주세요</S.imgspan>
                 </S.imgbox>
             </S.imgboxdiv>
+            
+            <S.buttondiv>
+                <S.submitButton onClick={handleSubmit}>등록하기</S.submitButton>
+            </S.buttondiv>
         </>
     );
 }
