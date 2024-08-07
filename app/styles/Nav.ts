@@ -8,6 +8,10 @@ export const logo = styled.img`
     margin-left: 310px;
     margin-top: 20px;
     background-color: #15171e;
+
+    @media (max-width: 1153px) {
+        margin-left: 10px;
+    }
 `
 
 export const pathbox = styled.div`
@@ -17,6 +21,10 @@ export const pathbox = styled.div`
     margin-left: 1295px;
     margin-top: -95px;
     margin-bottom: 122px;
+
+    @media (max-width: 1153px) {
+        margin-left: 880px;
+    }
 `
 
 export const loginedbox = styled.div`
@@ -24,6 +32,10 @@ export const loginedbox = styled.div`
     height: auto;
     margin-left: 990px;
     margin-top: -90px;
+
+    @media (max-width: 1153px) {
+        margin-left: 685px;
+    }
 `
 
 export const gosignup = styled.span`
@@ -88,4 +100,8 @@ export const introduce = styled.span`
     letter-spacing: normal;
     text-align: left;
     color: #fff;
+
+    @media (max-width: 1153px) {
+        margin-right: 0px;  
+    }
 `
