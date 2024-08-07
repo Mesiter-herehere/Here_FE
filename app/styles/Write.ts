@@ -199,6 +199,14 @@ export const imgplus = styled.img`
     margin-bottom: 16px;
 `
 
+export const imgInput = styled.input`
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+`
+
 export const imgspan = styled.span`
     width: 245px;
     height: 18px;
@@ -233,3 +241,10 @@ export const submitButton = styled.button`
     display: flex;
     align-items: center;
 `
+
+export const uploadedImage = styled.img`
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    align-items: center;
+`;
