@@ -11,7 +11,7 @@ function Main(){
     return(
         <>
             <Nav />
-            {/* <S.Title>‘나’를 소개합니다!</S.Title> */}
+            <S.Title>‘저’를 소개합니다!</S.Title>
         </>
     );
 }
