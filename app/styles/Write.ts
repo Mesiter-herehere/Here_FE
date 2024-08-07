@@ -10,6 +10,10 @@ export const Title = styled.span`
     text-align: left;
     margin-left: 430px;
     color: #fff;
+
+    @media (max-width: 1153px) {
+        margin-left: 100px;
+    }
 `
 
 export const gap = styled.div`
@@ -25,6 +29,10 @@ export const description = styled.span`
     font-weight: 500;
     text-align: left;
     color: #8f8f8f;
+
+    @media (max-width: 1153px) {
+        margin-left: 115px;
+    }
 `
 
 export const schoolct = styled.div`
@@ -36,6 +44,10 @@ export const schoolct = styled.div`
     background-color: #343539;
     display: flex;
     align-items: center;
+
+    @media (max-width: 1153px) {
+        margin-left: 105px;
+    }
 `
 
 export const shoolctspan = styled.span`
@@ -62,6 +74,10 @@ export const namect = styled.div`
     background-color: #343539;
     display: flex;
     align-items: center;
+
+    @media (max-width: 1153px) {
+        margin-left: 425px;
+    }
 `
 
 export const namectspan = styled.span`
