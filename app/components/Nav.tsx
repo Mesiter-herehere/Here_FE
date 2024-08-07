@@ -29,6 +29,10 @@ function Nav(){
         router.push("/");
     }
 
+    function pathwrite(){
+        router.push("/Write");
+    }
+
     function handleLogout() {
         localStorage.removeItem('access_token');
         setLogined(false);
@@ -40,7 +44,7 @@ function Nav(){
             <S.logo src={"/logo.svg"} onClick={logomain} />
             {!logined ? (
                 <S.loginedbox>
-                    <S.introduce>나 소개하기</S.introduce>
+                    <S.introduce onClick={pathwrite}>나 소개하기</S.introduce>
                     <S.gologout onClick={handleLogout}>로그아웃</S.gologout>
                 </S.loginedbox>
             ) : (
