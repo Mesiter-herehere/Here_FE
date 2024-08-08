@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import * as S from "../styles/Write";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -12,7 +12,25 @@ function Write() {
     const [containValue, setContainValue] = useState("");
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [imageSrc, setImageSrc] = useState<string | null>(null);
+    const [schoolName, setSchoolName] = useState("");
+    const [studentName, setStudentName] = useState("");
     const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("/api/user-info");  // Adjust the endpoint as needed
+                const { school, student } = response.data;
+
+                setSchoolName(school);
+                setStudentName(student);
+            } catch (error) {
+                console.log("Failed to fetch school or student information", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const handleImageUploadClick = () => {
         if (fileInputRef.current) {
@@ -68,7 +86,7 @@ function Write() {
         }
 
         try {
-            const response = await axios.post("/api/write", formData, {
+            await axios.post("/api/write", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -88,10 +106,10 @@ function Write() {
             <S.description>마음껏 ‘나’를 소개해주세요!</S.description>
 
             <S.schoolct>
-                <S.shoolctspan>광주소프트웨어마이스터고등학교</S.shoolctspan>
+                <S.shoolctspan>{schoolName || ""}</S.shoolctspan>
             </S.schoolct>
             <S.namect>
-                <S.namectspan>진건희</S.namectspan>
+                <S.namectspan>{studentName || ""}</S.namectspan>
             </S.namect>
 
             <S.textboxdiv>
