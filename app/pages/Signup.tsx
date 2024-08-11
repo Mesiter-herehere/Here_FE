@@ -13,19 +13,19 @@ function Signup() {
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
 
-    const handlePasswordChange = (e: any) => {
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordValue(e.target.value);
     };
 
-    const handleEmailChange = (e: any) => {
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmailValue(e.target.value);
     };
 
-    const handleNameChange = (e: any) => {
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNameValue(e.target.value);
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const dto = {
             school: schoolValue,
@@ -35,12 +35,14 @@ function Signup() {
         };
 
         try {
-            const response = await axios.post("/api/signup", dto);
-            router.push("/Siginin");
-            alert("회원가입 성공");
-
+            const response = await axios.post("http://localhost:8000/api/signup", dto);
+            if (response.status === 200) {
+                router.push("/signin"); 
+                alert("회원가입 성공");
+            }
         } catch (error) {
             console.log("회원가입 실패:", error);
+            alert("회원가입에 실패했습니다. 다시 시도해주세요.");
         }
     };
 

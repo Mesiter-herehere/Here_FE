@@ -3,33 +3,42 @@ import { useRouter } from "next/navigation";
 import * as S from "../styles/Nav";
 import { useState, useEffect } from "react";
 
-
-function Nav(){
+function Nav() {
     const router = useRouter();
     const [logined, setLogined] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
-            setLogined(true);
+            axios.post('http://localhost:8000/api/verify-token', { token })
+                .then(response => {
+                    if (response.data.status === "success") {
+                        setLogined(true);
+                    } else {
+                        setLogined(false);
+                    }
+                })
+                .catch(error => {
+                    setLogined(false);
+                });
         } else {
             setLogined(false);
         }
     }, []);
 
-    function pathsignin(){
+    function pathsignin() {
         router.push("/Signin");
     };
 
-    function pathsignup(){
+    function pathsignup() {
         router.push("/Signup");
     };
 
-    function logomain(){
+    function logomain() {
         router.push("/");
     }
 
-    function pathwrite(){
+    function pathwrite() {
         router.push("/Write");
     }
 
@@ -39,10 +48,10 @@ function Nav(){
         router.push("/");
     }
 
-    return(
+    return (
         <>
             <S.logo src={"/logo.svg"} onClick={logomain} />
-            {!logined ? (
+            {logined ? (
                 <S.loginedbox>
                     <S.introduce onClick={pathwrite}>나 소개하기</S.introduce>
                     <S.gologout onClick={handleLogout}>로그아웃</S.gologout>
