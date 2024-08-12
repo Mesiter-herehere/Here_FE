@@ -19,7 +19,7 @@ function Write() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("/api/user-info");  // Adjust the endpoint as needed
+                const response = await axios.get("/api/user-info");
                 const { school, student } = response.data;
 
                 setSchoolName(school);
