@@ -118,12 +118,13 @@ function Write() {
                         placeholder="제목" 
                         value={titleValue} 
                         onChange={handleTitleChange} 
+                        maxLength={30}
                     />
                     <S.titleLine />
                     <S.containTextArea 
                         placeholder="내용을 입력해주세요" 
                         value={containValue} 
-                        onChange={handleContainChange} 
+                        onChange={handleContainChange}
                     />
                 </S.textbox>
             </S.textboxdiv>
