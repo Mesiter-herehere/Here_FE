@@ -37,7 +37,7 @@ function Signup() {
         try {
             const response = await axios.post("http://localhost:8000/api/signup", dto);
             if (response.status === 200) {
-                router.push("/signin"); 
+                router.push("/signin");
                 alert("회원가입 성공");
             }
         } catch (error) {
@@ -57,18 +57,19 @@ function Signup() {
 
             <S.school>
                 <S.des>1. 재학 중인 학교를 알려주세요.</S.des>
-                <S.schooloption
-                    isSelected={schoolValue === "부산소프트웨어마이스터고등학교"}
-                    onClick={() => setSchoolValue("부산소프트웨어마이스터고등학교")}
-                >
-                    <S.schoolname>부산소프트웨어마이스터고등학교</S.schoolname>
-                </S.schooloption>
 
                 <S.schooloption
                     isSelected={schoolValue === "광주소프트웨어마이스터고등학교"}
                     onClick={() => setSchoolValue("광주소프트웨어마이스터고등학교")}
                 >
                     <S.schoolname>광주소프트웨어마이스터고등학교</S.schoolname>
+                </S.schooloption>
+
+                <S.schooloption
+                    isSelected={schoolValue === "부산소프트웨어마이스터고등학교"}
+                    onClick={() => setSchoolValue("부산소프트웨어마이스터고등학교")}
+                >
+                    <S.schoolname>부산소프트웨어마이스터고등학교</S.schoolname>
                 </S.schooloption>
 
                 <S.schooloption
@@ -88,12 +89,12 @@ function Signup() {
 
             <S.name>
                 <S.des>2. 이름을 알려주세요.</S.des>
-                <S.styledinput value={nameValue} onChange={handleNameChange} type="text" placeholder="ex) 신희성" />
+                <S.styledinput value={nameValue} onChange={handleNameChange} type="text" placeholder="ex) 진건희" />
             </S.name>
 
             <S.name>
                 <S.des>3. 학교 메일을 입력하세요.</S.des>
-                <S.styledinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="ex) 2023036@bssm.hs.kr" />
+                <S.styledinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="ex) s23054@gsm.hs.kr" />
             </S.name>
 
             <S.name>

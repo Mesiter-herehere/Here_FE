@@ -80,7 +80,7 @@ export const schooloption = styled.div<{ isSelected: boolean }>`
   margin: 16px 0 12px 11px;
   padding: 17px 440px 18px 38px;
   border-radius: 8px;
-  border: ${(props) => (props.isSelected ? 'solid 2px #343539'  : 'none')};
+  border: ${(props) => (props.isSelected ? 'solid 2px #FFFFFF'  : 'none')};
   background-color: #242630;
   cursor: pointer;
 `

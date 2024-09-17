@@ -25,7 +25,7 @@ function Write() {
                 setSchoolName(school);
                 setStudentName(student);
             } catch (error) {
-                console.log("Failed to fetch school or student information", error);
+                console.log("학교 or 학생 정보를 받지 못했습니다.", error);
             }
         };
 

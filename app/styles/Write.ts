@@ -109,7 +109,7 @@ export const textbox = styled.div`
 `
 
 export const Titleinput = styled.input`
-    width: auto;
+    width: 100%;
     height: 3vh;
     font-family: Pretendard;
     font-size: 24px;
