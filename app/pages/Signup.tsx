@@ -55,56 +55,58 @@ function Signup() {
                 </S.description>
             </S.Textbox>
 
-            <S.school>
-                <S.des>1. 재학 중인 학교를 알려주세요.</S.des>
+            <form onSubmit={handleSubmit}>
+                <S.school>
+                    <S.des>1. 재학 중인 학교를 알려주세요.</S.des>
 
-                <S.schooloption
-                    isSelected={schoolValue === "광주소프트웨어마이스터고등학교"}
-                    onClick={() => setSchoolValue("광주소프트웨어마이스터고등학교")}
-                >
-                    <S.schoolname>광주소프트웨어마이스터고등학교</S.schoolname>
-                </S.schooloption>
+                    <S.schooloption
+                        isSelected={schoolValue === "광주소프트웨어마이스터고등학교"}
+                        onClick={() => setSchoolValue("광주소프트웨어마이스터고등학교")}
+                    >
+                        <S.schoolname>광주소프트웨어마이스터고등학교</S.schoolname>
+                    </S.schooloption>
 
-                <S.schooloption
-                    isSelected={schoolValue === "부산소프트웨어마이스터고등학교"}
-                    onClick={() => setSchoolValue("부산소프트웨어마이스터고등학교")}
-                >
-                    <S.schoolname>부산소프트웨어마이스터고등학교</S.schoolname>
-                </S.schooloption>
+                    <S.schooloption
+                        isSelected={schoolValue === "부산소프트웨어마이스터고등학교"}
+                        onClick={() => setSchoolValue("부산소프트웨어마이스터고등학교")}
+                    >
+                        <S.schoolname>부산소프트웨어마이스터고등학교</S.schoolname>
+                    </S.schooloption>
 
-                <S.schooloption
-                    isSelected={schoolValue === "대구소프트웨어마이스터고등학교"}
-                    onClick={() => setSchoolValue("대구소프트웨어마이스터고등학교")}
-                >
-                    <S.schoolname>대구소프트웨어마이스터고등학교</S.schoolname>
-                </S.schooloption>
+                    <S.schooloption
+                        isSelected={schoolValue === "대구소프트웨어마이스터고등학교"}
+                        onClick={() => setSchoolValue("대구소프트웨어마이스터고등학교")}
+                    >
+                        <S.schoolname>대구소프트웨어마이스터고등학교</S.schoolname>
+                    </S.schooloption>
 
-                <S.schooloption
-                    isSelected={schoolValue === "대덕소프트웨어마이스터고등학교"}
-                    onClick={() => setSchoolValue("대덕소프트웨어마이스터고등학교")}
-                >
-                    <S.schoolname>대덕소프트웨어마이스터고등학교</S.schoolname>
-                </S.schooloption>
-            </S.school>
+                    <S.schooloption
+                        isSelected={schoolValue === "대덕소프트웨어마이스터고등학교"}
+                        onClick={() => setSchoolValue("대덕소프트웨어마이스터고등학교")}
+                    >
+                        <S.schoolname>대덕소프트웨어마이스터고등학교</S.schoolname>
+                    </S.schooloption>
+                </S.school>
 
-            <S.name>
-                <S.des>2. 이름을 알려주세요.</S.des>
-                <S.styledinput value={nameValue} onChange={handleNameChange} type="text" placeholder="ex) 진건희" />
-            </S.name>
+                <S.name>
+                    <S.des>2. 이름을 알려주세요.</S.des>
+                    <S.styledinput value={nameValue} onChange={handleNameChange} type="text" placeholder="ex) 진건희" />
+                </S.name>
 
-            <S.name>
-                <S.des>3. 학교 메일을 입력하세요.</S.des>
-                <S.styledinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="ex) s23054@gsm.hs.kr" />
-            </S.name>
+                <S.name>
+                    <S.des>3. 학교 메일을 입력하세요.</S.des>
+                    <S.styledinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="ex) s23054@gsm.hs.kr" />
+                </S.name>
 
-            <S.name>
-                <S.des>4. 사용할 비밀번호를 입력하세요.</S.des>
-                <S.styledinput value={passwordValue} onChange={handlePasswordChange} type="password" placeholder="ex) swmeister" />
-            </S.name>
+                <S.name>
+                    <S.des>4. 사용할 비밀번호를 입력하세요.</S.des>
+                    <S.styledinput value={passwordValue} onChange={handlePasswordChange} type="password" placeholder="ex) swmeister" />
+                </S.name>
 
-            <S.Signbutton type="submit" onClick={handleSubmit}>
-                가입하기
-            </S.Signbutton>
+                <S.Signbutton type="submit">
+                    가입하기
+                </S.Signbutton>
+            </form>
         </S.Main>
     );
 }
