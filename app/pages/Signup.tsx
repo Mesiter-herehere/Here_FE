@@ -28,21 +28,20 @@ function Signup() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const dto = {
-            school: schoolValue,
-            name: nameValue,
+
             email: emailValue,
+            name: nameValue,
             password: passwordValue,
+            school: schoolValue,
         };
 
         try {
-            const response = await axios.post("http://localhost:8000/api/signup", dto);
+            const response = await axios.post("https://endlessly-cuddly-salmon.ngrok-free.app/api/users/register", dto);
             if (response.status === 200) {
                 router.push("/signin");
-                alert("회원가입 성공");
             }
         } catch (error) {
             console.log("회원가입 실패:", error);
-            alert("회원가입에 실패했습니다. 다시 시도해주세요.");
         }
     };
 
@@ -60,29 +59,29 @@ function Signup() {
                     <S.des>1. 재학 중인 학교를 알려주세요.</S.des>
 
                     <S.schooloption
-                        isSelected={schoolValue === "광주소프트웨어마이스터고등학교"}
-                        onClick={() => setSchoolValue("광주소프트웨어마이스터고등학교")}
+                        isSelected={schoolValue === "GWANGJU_SOFTWARE_MAESTER"}
+                        onClick={() => setSchoolValue("GWANGJU_SOFTWARE_MAESTER")}
                     >
                         <S.schoolname>광주소프트웨어마이스터고등학교</S.schoolname>
                     </S.schooloption>
 
                     <S.schooloption
-                        isSelected={schoolValue === "부산소프트웨어마이스터고등학교"}
-                        onClick={() => setSchoolValue("부산소프트웨어마이스터고등학교")}
+                        isSelected={schoolValue === "BUSAN_SOFTWARE_MAESTER"}
+                        onClick={() => setSchoolValue("BUSAN_SOFTWARE_MAESTER")}
                     >
                         <S.schoolname>부산소프트웨어마이스터고등학교</S.schoolname>
                     </S.schooloption>
 
                     <S.schooloption
-                        isSelected={schoolValue === "대구소프트웨어마이스터고등학교"}
-                        onClick={() => setSchoolValue("대구소프트웨어마이스터고등학교")}
+                        isSelected={schoolValue === "DAE_SOFTWARE_MAESTER"}
+                        onClick={() => setSchoolValue("DAE_SOFTWARE_MAESTER")}
                     >
                         <S.schoolname>대구소프트웨어마이스터고등학교</S.schoolname>
                     </S.schooloption>
 
                     <S.schooloption
-                        isSelected={schoolValue === "대덕소프트웨어마이스터고등학교"}
-                        onClick={() => setSchoolValue("대덕소프트웨어마이스터고등학교")}
+                        isSelected={schoolValue === "DAEJEON_SOFTWARE_MAESTER"}
+                        onClick={() => setSchoolValue("DAEJEON_SOFTWARE_MAESTER")}
                     >
                         <S.schoolname>대덕소프트웨어마이스터고등학교</S.schoolname>
                     </S.schooloption>
