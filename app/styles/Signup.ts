@@ -133,6 +133,7 @@ export const Signbutton = styled.button`
   border-radius: 8px;
   background-color: #1d1f29;
   color: white;
+  font-family: Pretendard;
 
   @media (max-width: 1153px) {
     margin-left: 729px;
