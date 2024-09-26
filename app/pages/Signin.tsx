@@ -28,7 +28,7 @@ function Signin() {
         };
 
         try {
-            const response = await axios.post("https://endlessly-cuddly-salmon.ngrok-free.app/api/users/login", dto, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/login`, dto, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -38,11 +38,11 @@ function Signin() {
             if (response.status === 200) {
                 const { access, refresh } = response.data;
 
-                localStorage.setItem("access_token", access);
-                localStorage.setItem("refresh_token", refresh);
+                localStorage.setItem("access_token", response.data);
+                localStorage.setItem("refresh_token", response.data);
 
                 setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
-                router.push("/dashboard");  // 요거만 나중에 바꾸면 끝ㅌ
+                router.push("/");
             }
         } catch (error) {
             console.log("로그인 실패:", error);
@@ -50,26 +50,34 @@ function Signin() {
     };
 
     // 토큰 갱신
-    const onSilentRefresh = async (accessToken : string) => {
+    const onSilentRefresh = async (accessToken: string) => {
         try {
-            const response = await axios.post("http://localhost:8000/api/refresh", { access_token: accessToken }, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true,
-            });
-
-            if (response.status === 200) {
-                const { access } = response.data;
-
-                localStorage.setItem("access_token", access);
-
-                setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/auth/refresh`,
+            { access_token: accessToken },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
             }
-        } catch (error) {
-            console.error("토큰 갱신 중 오류 발생:", error);
+          );
+    
+          if (response.status === 200) {
+            // 응답 데이터에서 토큰 추출
+            const { access, refresh } = response.data; // 최상위 키에서 직접 추출
+    
+            // localStorage에 토큰 저장
+            localStorage.setItem("access_token", access);
+            localStorage.setItem("refresh_token", refresh);
+    
+            // 토큰 갱신 예약 호출
+            setTimeout(() => onSilentRefresh(access), JWT_EXPIRY_TIME - 60000);
+          }
+        } catch (error: any) {
+          console.error("Error while refreshing token:", error);
         }
-    };
+      };
 
     return (
         <>

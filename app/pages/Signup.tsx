@@ -11,6 +11,7 @@ function Signup() {
     const [schoolValue, setSchoolValue] = useState("");
     const [nameValue, setNameValue] = useState("");
     const [emailValue, setEmailValue] = useState("");
+    const [roleValue, setRoleValue] = useState("student");
     const [passwordValue, setPasswordValue] = useState("");
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,17 +29,19 @@ function Signup() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const dto = {
-
             email: emailValue,
             name: nameValue,
             password: passwordValue,
             school: schoolValue,
+            ROLE_STUDENT: roleValue,
         };
 
         try {
-            const response = await axios.post("https://endlessly-cuddly-salmon.ngrok-free.app/api/users/register", dto);
+            const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/auth/register`, dto
+            );
             if (response.status === 200) {
-                router.push("/signin");
+                router.push("/Signin");
             }
         } catch (error) {
             console.log("회원가입 실패:", error);

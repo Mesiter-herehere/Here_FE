@@ -1,9 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from "react";
-import Router from "next/navigation";
 import * as S from "../styles/Main";
-import axios from "axios";
 import Nav from "../components/Nav";
 import Userdata from "../components/Userdata";
 
@@ -15,18 +13,9 @@ function Main() {
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
-            axios.post('http://localhost:8000/api/verify-token', { token })
-                .then(response => {
-                    if (response.data.status === "success") {
-                        setLogined(true);
-                        fetchUserData();
-                    } else {
-                        setLogined(false);
-                    }
-                })
-                .catch(error => {
-                    setLogined(false);
-                });
+            // 토큰이 로컬 스토리지에 존재하면 logined를 true로 설정
+            setLogined(true);
+            fetchUserData();  // 백엔드에서 유저 데이터를 받아오는 함수 호출
         } else {
             setLogined(false);
         }
@@ -34,8 +23,10 @@ function Main() {
 
     const fetchUserData = async () => {
         try {
-            const response = await axios.get("/api/userdata");
-            setUserData(response.data);
+            // 유저 데이터를 백엔드에서 가져오는 API 호출
+            const response = await fetch('/api/userdata');  // 실제 백엔드 API 경로로 변경
+            const data = await response.json();
+            setUserData(data);
         } catch (error) {
             console.log("유저 데이터를 불러오는 데 실패했습니다.", error);
         }
@@ -53,17 +44,17 @@ function Main() {
 
                     <S.schooldiv>
                         <S.schoollist
-                            isSelected={schoolValue === "부산소프트웨어마이스터고등학교"} 
-                            onClick={() => setSchoolValue("부산소프트웨어마이스터고등학교")}>부산</S.schoollist>
+                            isSelected={schoolValue === "BUSAN_SOFTWARE_MAESTER"} 
+                            onClick={() => setSchoolValue("BUSAN_SOFTWARE_MAESTER")}>부산</S.schoollist>
                         <S.schoollist
-                            isSelected={schoolValue === "광주소프트웨어마이스터고등학교"} 
-                            onClick={() => setSchoolValue("광주소프트웨어마이스터고등학교")}>광주</S.schoollist>
+                            isSelected={schoolValue === "GWANGJU_SOFTWARE_MAESTER"} 
+                            onClick={() => setSchoolValue("GWANGJU_SOFTWARE_MAESTER")}>광주</S.schoollist>
                         <S.schoollist
-                            isSelected={schoolValue === "대덕소프트웨어마이스터고등학교"} 
-                            onClick={() => setSchoolValue("대덕소프트웨어마이스터고등학교")}>대덕</S.schoollist>
+                            isSelected={schoolValue === "DAEJEON_SOFTWARE_MAESTER"} 
+                            onClick={() => setSchoolValue("DAEJEON_SOFTWARE_MAESTER")}>대덕</S.schoollist>
                         <S.schoollist
-                            isSelected={schoolValue === "대구소프트웨어마이스터고등학교"} 
-                            onClick={() => setSchoolValue("대구소프트웨어마이스터고등학교")}>대구</S.schoollist>
+                            isSelected={schoolValue === "DAE_SOFTWARE_MAESTER"} 
+                            onClick={() => setSchoolValue("DAE_SOFTWARE_MAESTER")}>대구</S.schoollist>
                     </S.schooldiv>
 
                     {userData && <Userdata userData={userData} />}

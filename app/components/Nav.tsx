@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import * as S from "../styles/Nav";
 import { useState, useEffect } from "react";
@@ -10,17 +9,8 @@ function Nav() {
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
-            axios.post('http://localhost:8000/api/verify-token', { token })
-                .then(response => {
-                    if (response.data.status === "success") {
-                        setLogined(true);
-                    } else {
-                        setLogined(false);
-                    }
-                })
-                .catch(error => {
-                    setLogined(false);
-                });
+            // 로컬 스토리지에 토큰이 있으면 logined를 true로 설정
+            setLogined(true);
         } else {
             setLogined(false);
         }
@@ -28,11 +18,11 @@ function Nav() {
 
     function pathsignin() {
         router.push("/Signin");
-    };
+    }
 
     function pathsignup() {
         router.push("/Signup");
-    };
+    }
 
     function logomain() {
         router.push("/");
