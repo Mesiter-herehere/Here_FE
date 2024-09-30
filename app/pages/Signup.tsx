@@ -58,7 +58,7 @@ function Signup() {
             </S.Textbox>
 
             <form onSubmit={handleSubmit}>
-                <S.school>
+                <S.school>``
                     <S.des>1. 재학 중인 학교를 알려주세요.</S.des>
 
                     <S.schooloption
@@ -92,17 +92,17 @@ function Signup() {
 
                 <S.name>
                     <S.des>2. 이름을 알려주세요.</S.des>
-                    <S.styledinput value={nameValue} onChange={handleNameChange} type="text" placeholder="ex) 진건희" />
+                    <S.styledinput value={nameValue} onChange={handleNameChange} type="text" placeholder="ex) 홍길동" />
                 </S.name>
 
                 <S.name>
                     <S.des>3. 학교 메일을 입력하세요.</S.des>
-                    <S.styledinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="ex) s23054@gsm.hs.kr" />
+                    <S.styledinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="ex) □□□□□□@gsm.hs.kr" />
                 </S.name>
 
                 <S.name>
                     <S.des>4. 사용할 비밀번호를 입력하세요.</S.des>
-                    <S.styledinput value={passwordValue} onChange={handlePasswordChange} type="password" placeholder="ex) swmeister" />
+                    <S.styledinput value={passwordValue} onChange={handlePasswordChange} type="password" placeholder="ex) password" />
                 </S.name>
 
                 <S.Signbutton type="submit">
