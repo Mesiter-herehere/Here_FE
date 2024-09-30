@@ -65,7 +65,7 @@ function Main() {
                     <br />
                     <S.LightTitle>저를 미리 알고 가면 좋을껄요?</S.LightTitle>
                     <br />
-                    <S.assent>로그인 후 서비스를 이용해주세요.</S.assent>
+                    <S.assent href="Signin">로그인 후 서비스를 이용해주세요.</S.assent>
                 </>
             )}
         </>

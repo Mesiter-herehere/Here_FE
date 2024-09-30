@@ -31,7 +31,7 @@ export const LightTitle = styled.span`
     }
 `
 
-export const assent = styled.span`
+export const assent = styled.a`
     display: flex;
     width: auto;
     height: auto;
