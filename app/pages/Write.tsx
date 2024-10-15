@@ -19,7 +19,12 @@ function Write() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("/api/user-info");
+                const token = localStorage.getItem("access_token"); // localStorage에서 access_token을 가져옴
+                const response = await axios.get(`https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,  // 토큰을 Authorization 헤더에 추가
+                    }
+                });
                 const { school, student } = response.data;
 
                 setSchoolName(school);
@@ -79,16 +84,18 @@ function Write() {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("Title", titleValue);
-        formData.append("Contain", containValue);
+        formData.append("title", titleValue);
+        formData.append("content", containValue);
         if (imageFile) {
-            formData.append("Image", imageFile);
+            formData.append("file", imageFile);
         }
 
         try {
-            await axios.post("/api/write", formData, {
+            const token = localStorage.getItem("access_token");
+            await axios.post(`https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro`, formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`,
                 }
             });
             router.push("/");

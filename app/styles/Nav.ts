@@ -100,6 +100,7 @@ export const introduce = styled.span`
     letter-spacing: normal;
     text-align: left;
     color: #fff;
+    cursor: pointer;
 
     @media (max-width: 1153px) {
         margin-right: 0px;  

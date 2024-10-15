@@ -7,19 +7,33 @@ import axios from "axios";
 
 function Signup() {
     const router = useRouter();
-    const [isInputFocused, setIsInputFocused] = useState(false);
     const [schoolValue, setSchoolValue] = useState("");
     const [nameValue, setNameValue] = useState("");
-    const [emailValue, setEmailValue] = useState("");
+    const [emailFrontValue, setEmailFrontValue] = useState("");
     const [roleValue, setRoleValue] = useState("student");
     const [passwordValue, setPasswordValue] = useState("");
 
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPasswordValue(e.target.value);
+    const getEmailDomain = () => {
+        switch (schoolValue) {
+            case "GWANGJU_SOFTWARE_MAESTER":
+                return "gsm.hs.kr";
+            case "BUSAN_SOFTWARE_MAESTER":
+                return "bssm.hs.kr";
+            case "DAE_SOFTWARE_MAESTER":
+                return "dgsm.hs.kr";
+            case "DAEJEON_SOFTWARE_MAESTER":
+                return "dsm.hs.kr";
+            default:
+                return "";
+        }
     };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmailValue(e.target.value);
+        setEmailFrontValue(e.target.value);
+    };
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPasswordValue(e.target.value);
     };
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,8 +42,9 @@ function Signup() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const email = `${emailFrontValue}@${getEmailDomain()}`;
         const dto = {
-            email: emailValue,
+            email,
             name: nameValue,
             password: passwordValue,
             school: schoolValue,
@@ -58,7 +73,7 @@ function Signup() {
             </S.Textbox>
 
             <form onSubmit={handleSubmit}>
-                <S.school>``
+                <S.school>
                     <S.des>1. 재학 중인 학교를 알려주세요.</S.des>
 
                     <S.schooloption
@@ -96,8 +111,14 @@ function Signup() {
                 </S.name>
 
                 <S.name>
-                    <S.des>3. 학교 메일을 입력하세요.</S.des>
-                    <S.styledinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="ex) □□□□□□@gsm.hs.kr" />
+                    <S.des>3. 학교 메일의 앞부분을 입력하세요.</S.des>
+                    <S.styledinput
+                        value={emailFrontValue}
+                        onChange={handleEmailChange}
+                        type="text"
+                        placeholder={`@${getEmailDomain()}`}
+                        disabled={!getEmailDomain()}
+                    />
                 </S.name>
 
                 <S.name>

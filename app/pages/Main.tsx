@@ -1,6 +1,7 @@
-'use client'
+'use client';
 
 import React, { useState, useEffect } from "react";
+import axios from "axios"; // axios를 import 합니다.
 import * as S from "../styles/Main";
 import Nav from "../components/Nav";
 import Userdata from "../components/Userdata";
@@ -13,22 +14,27 @@ function Main() {
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
-            // 토큰이 로컬 스토리지에 존재하면 logined를 true로 설정
             setLogined(true);
-            fetchUserData();  // 백엔드에서 유저 데이터를 받아오는 함수 호출
+            fetchUserData(token);
         } else {
             setLogined(false);
         }
     }, []);
 
-    const fetchUserData = async () => {
+    const fetchUserData = async (token: string) => {
         try {
-            // 유저 데이터를 백엔드에서 가져오는 API 호출
-            const response = await fetch('/api/userdata');  // 실제 백엔드 API 경로로 변경
-            const data = await response.json();
-            setUserData(data);
+            const response = await axios.get(`https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            if (response.status === 200) {
+                setUserData(response.data);
+                console.log("데이터 get 성공");
+                console.log(response.data);
+            }
         } catch (error) {
-            console.log("유저 데이터를 불러오는 데 실패했습니다.", error);
+            console.error("유저 데이터 요청 실패:", error);
         }
     };
 
@@ -57,7 +63,9 @@ function Main() {
                             onClick={() => setSchoolValue("DAE_SOFTWARE_MAESTER")}>대구</S.schoollist>
                     </S.schooldiv>
 
-                    {userData && <Userdata userData={userData} />}
+                    {userData &&  (
+                        <Userdata userDatas={userData} />
+                    )}
                 </>
             ) : (
                 <>
