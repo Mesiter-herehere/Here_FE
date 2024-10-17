@@ -20,7 +20,7 @@ export const Title = styled.span`
   width: 125px;
   height: 43px;
   margin-left: 560px;
-  margin-top: 141px;
+  margin-top: 121px;
   font-family: Pretendard;
   font-size: 36px;
   font-weight: bold;
@@ -64,21 +64,6 @@ export const emailinput = styled.input`
   }
 `
 
-export const psinput = styled.input`
-  width: 712px;
-  height: 56px;
-  margin-top: 18px;
-  padding: 0 30px;
-  border-radius: 8px;
-  background-color: #242630;
-  margin-left: 498px;
-  color: white;
-
-  @media (max-width: 1153px) {
-    margin-left: 190px;
-  }
-`
-
 export const Loginbutton = styled.button`
   display: block;
   width: 177px;
@@ -90,4 +75,45 @@ export const Loginbutton = styled.button`
   border-radius: 8px;
   background-color: #1d1f29;
   color: white;
+`
+
+export const PasswordWrapper = styled.div`
+  position: relative;
+  width: 712px; /* emailinput과 동일한 width */
+  height: 56px;
+  margin-top: 23px; /* emailinput과 동일한 margin */
+  margin-left: 498px; /* emailinput과 동일한 margin-left */
+  
+  @media (max-width: 1153px) {
+    margin-left: 190px; /* emailinput과 동일한 media query */
+  }
+`;
+
+export const psinput = styled.input`
+  width: 100%; /* 부모인 PasswordWrapper에 맞게 width 설정 */
+  height: 56px;
+  padding: 0 30px;
+  border-radius: 8px;
+  background-color: #242630;
+  color: white;
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  right: 15px;
+  margin-top: -40px;
+  cursor: pointer;
+  color: #ccc;
+`;
+
+export const backspan = styled.span`
+  display: flex;
+  color: white;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  margin-left: 60px;
+  padding-top: 20px;
+  cursor: pointer;
 `

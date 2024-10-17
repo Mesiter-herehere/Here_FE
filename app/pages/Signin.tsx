@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import * as S from "../styles/Signin";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 function Signin() {
     const router = useRouter();
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
+    const [showPassword, setShowPassword] = useState(false); // showPassword 상태 추가
 
     const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
@@ -19,6 +21,10 @@ function Signin() {
     const handleEmailChange = (e : any) => {
         setEmailValue(e.target.value);
     };
+
+    const backpage = (e : any) => {
+        router.push("/");
+    }
 
     const handleSubmit = async (e : any) => {
         e.preventDefault();
@@ -81,6 +87,8 @@ function Signin() {
 
     return (
         <>
+            <S.backspan onClick={backpage}>← 돌아가기</S.backspan>
+
             <S.Textbox>
                 <S.Title>로그인</S.Title>
                 <S.description>
@@ -89,7 +97,17 @@ function Signin() {
             </S.Textbox>
 
             <S.emailinput value={emailValue} onChange={handleEmailChange} type="email" placeholder="아이디를 입력해주세요." />
-            <S.psinput value={passwordValue} onChange={handlePasswordChange} type="password" placeholder="비밀번호를 입력해주세요." />
+            <S.PasswordWrapper>
+                <S.psinput 
+                    value={passwordValue} 
+                    onChange={handlePasswordChange} 
+                    type={showPassword ? "text" : "password"}
+                    placeholder="ex) password" 
+                />
+                <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
+                </S.IconWrapper>
+            </S.PasswordWrapper>
 
             <S.Loginbutton type="submit" onClick={handleSubmit}>로그인</S.Loginbutton>
         </>

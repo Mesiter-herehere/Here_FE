@@ -28,13 +28,12 @@ export const playerDes = styled.span`
 `
 
 export const schoolct = styled.div`
-    width: 305px;
     height: 44px;
-    margin-top: 43px;
-    padding: 11px 35px 12px 36px;
+    margin-top: -44px;
+    padding: 12px 25px 11px 24px;
     border-radius: 20px;
     background-color: #343539;
-    display: flex;
+    display: inline-block;
     align-items: center;
 
     @media (max-width: 1153px) {
@@ -57,15 +56,30 @@ export const shoolctspan = styled.span`
 `
 
 export const namect = styled.div`
-    width: 96px;
     height: 44px;
-    margin-left: 320px;
+    margin-top: -44px;
+    margin-left: 11px;
+    padding: 12px 25px 11px 24px;
+    border-radius: 20px;
+    background-color: #343539;
+    display: inline-block;
+    align-items: center;
+    
+
+    @media (max-width: 1153px) {
+        margin-left: 425px;
+    }
+`
+
+export const testct = styled.div`
+    height: 44px;
     margin-top: -44px;
     padding: 12px 25px 11px 24px;
     border-radius: 20px;
     background-color: #343539;
-    display: flex;
+    display: inline-block;
     align-items: center;
+    
 
     @media (max-width: 1153px) {
         margin-left: 425px;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
-  height: 150vh;
+  height: 160vh;
 `
 
 export const Textbox = styled.div`
@@ -20,7 +20,7 @@ export const Title = styled.span`
   width: 125px;
   height: 43px;
   margin-left: 560px;
-  margin-top: 141px;
+  margin-top: 91px;
   font-family: Pretendard;
   font-size: 36px;
   font-weight: bold;
@@ -138,4 +138,33 @@ export const Signbutton = styled.button`
   @media (max-width: 1153px) {
     margin-left: 729px;
   }
+`
+
+export const PasswordWrapper = styled.div`
+  position: relative;
+  width: 712px;
+  height: 56px;
+  margin: 17px 0 0 10px;
+  display: flex;
+  align-items: center;
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  margin-top: 17px;
+  right: 15px;
+  cursor: pointer;
+  color: #ccc;
+`;
+
+export const backspan = styled.span`
+  display: flex;
+  color: white;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  margin-left: 60px;
+  padding-top: 20px;
+  cursor: pointer;
 `

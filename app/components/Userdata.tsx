@@ -10,12 +10,8 @@ interface UserData {
     imageUrl?: string;
 }
 
-interface UserdataProps {
-    userDatas: UserData;
-}
-
-function Userdata({ userDatas }: UserdataProps) {
-    const [userData, setUserData] = useState<UserData | null>(null);
+function Userdata() {
+    const [userDatas, setUserDatas] = useState<UserData[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -30,16 +26,16 @@ function Userdata({ userDatas }: UserdataProps) {
                 const response = await axios.get("https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main", {
                     headers: {
                         Authorization: `Bearer ${token}`,
+                        'ngrok-skip-browser-warning': '69420',
                     },
                 });
 
                 const contentType = response.headers["content-type"];
-
                 // 응답이 JSON인지 확인
                 if (contentType && contentType.includes("application/json")) {
-                    const data: UserData = response.data;
+                    const data: UserData[] = response.data; // 다수의 사용자 데이터로 변경
                     console.log("응답 데이터:", data); // 받은 데이터를 콘솔에 출력
-                    setUserData(data);
+                    setUserDatas(data);
                 } else {
                     throw new Error("JSON 형식이 아닌 응답을 받았습니다");
                 }
@@ -54,25 +50,34 @@ function Userdata({ userDatas }: UserdataProps) {
         fetchUserData();
     }, []);
 
-    if (!userData) {
-        return null;
+    if (loading) {
+        return <div>Loading...</div>; // 로딩 중 메시지
+    }
+
+    if (error) {
+        return <div>{error}</div>; // 에러 메시지
     }
 
     return (
-        <S.playerdiv>
-            <S.playerTitle>{userData.title}</S.playerTitle>
-            <br />
-            <S.playerDes>{userData.content}</S.playerDes>
+        <div>
+            {userDatas.map((userData, index) => (
+                <S.playerdiv key={index}>
+                    <S.playerTitle>{userData.title}</S.playerTitle>
+                    <br />
+                    <S.playerDes>{userData.content}</S.playerDes>
+                    <br />
+                    <br />
+                    <S.schoolct>
+                        <S.shoolctspan>{userData.userSchool}</S.shoolctspan>
+                    </S.schoolct>
+                    <S.namect>
+                        <S.namectspan>{userData.userName}</S.namectspan>
+                    </S.namect>
 
-            <S.schoolct>
-                <S.shoolctspan>{userData.userSchool}</S.shoolctspan>
-            </S.schoolct>
-            <S.namect>
-                <S.namectspan>{userData.userName}</S.namectspan>
-            </S.namect>
-
-            {userData.imageUrl && <S.playerImg src={userData.imageUrl} alt="User Image" />}
-        </S.playerdiv>
+                    {userData.imageUrl && <S.playerImg src={userData.imageUrl} alt="User Image" />}
+                </S.playerdiv>
+            ))}
+        </div>
     );
 }
 

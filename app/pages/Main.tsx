@@ -1,14 +1,22 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // axios를 import 합니다.
+import axios from "axios"; 
 import * as S from "../styles/Main";
 import Nav from "../components/Nav";
 import Userdata from "../components/Userdata";
 
+interface UserData {
+    title: string;
+    content: string;
+    userSchool: string;
+    userName: string;
+    imageUrl?: string;
+}
+
 function Main() {
     const [schoolValue, setSchoolValue] = useState("");
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState<UserData | UserData[]>([]); // 객체 또는 배열로 선언
     const [logined, setLogined] = useState(false);
 
     useEffect(() => {
@@ -29,9 +37,17 @@ function Main() {
                 }
             });
             if (response.status === 200) {
-                setUserData(response.data);
+                const data = response.data;
+
+                // 응답 데이터가 배열인지 객체인지 확인하여 처리
+                if (Array.isArray(data)) {
+                    setUserData(data);
+                } else {
+                    setUserData([data]); // 배열이 아니면 배열로 변환
+                }
+
                 console.log("데이터 get 성공");
-                console.log(response.data);
+                console.log(data);
             }
         } catch (error) {
             console.error("유저 데이터 요청 실패:", error);
@@ -63,8 +79,10 @@ function Main() {
                             onClick={() => setSchoolValue("DAE_SOFTWARE_MAESTER")}>대구</S.schoollist>
                     </S.schooldiv>
 
-                    {userData &&  (
-                        <Userdata userDatas={userData} />
+                    {Array.isArray(userData) && userData.length > 0 && (
+                        userData.map((user, index) => (
+                            <Userdata key={index} userDatas={user} />
+                        ))
                     )}
                 </>
             ) : (
