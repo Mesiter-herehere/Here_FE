@@ -1,10 +1,11 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios"; 
 import * as S from "../styles/Main";
 import Nav from "../components/Nav";
 import Userdata from "../components/Userdata";
+import Modal from "../components/Modal";
 
 interface UserData {
     title: string;
@@ -16,34 +17,41 @@ interface UserData {
 
 function Main() {
     const [schoolValue, setSchoolValue] = useState("");
-    const [userData, setUserData] = useState<UserData | UserData[]>([]); // 객체 또는 배열로 선언
+    const [userData, setUserData] = useState<UserData[]>([]);
     const [logined, setLogined] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState<UserData | null>(null);
+    const schoolListRef = useRef<HTMLDivElement | null>(null); // ref 추가
 
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
             setLogined(true);
-            fetchUserData(token);
+            fetchUserData(token, schoolValue);
         } else {
             setLogined(false);
         }
-    }, []);
+    }, [schoolValue]);
 
-    const fetchUserData = async (token: string) => {
+    const fetchUserData = async (token: string, school?: string) => {
         try {
-            const response = await axios.get(`https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main`, {
+            const url = school 
+                ? `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school?school=${school}`
+                : `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school`;
+            
+            const response = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': '69420',
                 }
             });
             if (response.status === 200) {
                 const data = response.data;
 
-                // 응답 데이터가 배열인지 객체인지 확인하여 처리
                 if (Array.isArray(data)) {
                     setUserData(data);
                 } else {
-                    setUserData([data]); // 배열이 아니면 배열로 변환
+                    setUserData([data]);
                 }
 
                 console.log("데이터 get 성공");
@@ -53,6 +61,29 @@ function Main() {
             console.error("유저 데이터 요청 실패:", error);
         }
     };
+
+    const handleUserClick = (user: UserData) => {
+        setSelectedUser(user);
+        setModalOpen(true);
+    };
+
+    const truncateText = (text: string | undefined) => {
+        if (!text) return "";
+        return text.length > 10 ? text.slice(0, 10) + "..." : text;
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (schoolListRef.current && !schoolListRef.current.contains(event.target as Node)) {
+            setSchoolValue("");
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
 
     return (
         <>
@@ -64,7 +95,7 @@ function Main() {
                     <br />
                     <S.LightTitle>저를 미리 알고 가면 좋을껄요?</S.LightTitle>
 
-                    <S.schooldiv>
+                    <S.schooldiv ref={schoolListRef}>
                         <S.schoollist
                             isSelected={schoolValue === "BUSAN_SOFTWARE_MAESTER"} 
                             onClick={() => setSchoolValue("BUSAN_SOFTWARE_MAESTER")}>부산</S.schoollist>
@@ -79,10 +110,15 @@ function Main() {
                             onClick={() => setSchoolValue("DAE_SOFTWARE_MAESTER")}>대구</S.schoollist>
                     </S.schooldiv>
 
-                    {Array.isArray(userData) && userData.length > 0 && (
-                        userData.map((user, index) => (
-                            <Userdata key={index} userDatas={user} />
-                        ))
+                    {userData.length > 0 && (
+                        <Userdata
+                            userDatas={userData}
+                            onUserClick={handleUserClick}
+                        />
+                    )}
+
+                    {modalOpen && selectedUser && (
+                        <Modal user={selectedUser} onClose={() => setModalOpen(false)} />
                     )}
                 </>
             ) : (

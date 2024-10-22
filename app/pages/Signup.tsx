@@ -13,10 +13,10 @@ function Signup() {
     const [emailFrontValue, setEmailFrontValue] = useState("");
     const [roleValue, setRoleValue] = useState("student");
     const [passwordValue, setPasswordValue] = useState("");
-    const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태
+    const [showPassword, setShowPassword] = useState(false); 
 
     const getEmailDomain = () => {
-        switch (schoolValue) {
+        switch (schoolValue) {  
             case "GWANGJU_SOFTWARE_MAESTER":
                 return "gsm.hs.kr";
             case "BUSAN_SOFTWARE_MAESTER":

@@ -10,7 +10,7 @@ function Signin() {
     const router = useRouter();
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
-    const [showPassword, setShowPassword] = useState(false); // showPassword 상태 추가
+    const [showPassword, setShowPassword] = useState(false);
 
     const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 

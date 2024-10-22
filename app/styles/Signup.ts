@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
-  height: 160vh;
+  height: 16d0vh;
 `
 
 export const Textbox = styled.div`

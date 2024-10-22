@@ -15,6 +15,7 @@ export const playerTitle = styled.span`
     font-weight: 600;
     text-align: left;
     color: #fff;
+    cursor: pointer;
 `
 
 export const playerDes = styled.span`
@@ -25,6 +26,7 @@ export const playerDes = styled.span`
     font-weight: 600;
     text-align: left;
     color: #adadad;
+    cursor: pointer;
 `
 
 export const schoolct = styled.div`
@@ -35,6 +37,7 @@ export const schoolct = styled.div`
     background-color: #343539;
     display: inline-block;
     align-items: center;
+    cursor: pointer;
 
     @media (max-width: 1153px) {
         margin-left: 105px;
@@ -53,6 +56,7 @@ export const shoolctspan = styled.span`
     letter-spacing: normal;
     text-align: left;
     color: #d7d7d7;
+    cursor: pointer;
 `
 
 export const namect = styled.div`
@@ -64,22 +68,7 @@ export const namect = styled.div`
     background-color: #343539;
     display: inline-block;
     align-items: center;
-    
-
-    @media (max-width: 1153px) {
-        margin-left: 425px;
-    }
-`
-
-export const testct = styled.div`
-    height: 44px;
-    margin-top: -44px;
-    padding: 12px 25px 11px 24px;
-    border-radius: 20px;
-    background-color: #343539;
-    display: inline-block;
-    align-items: center;
-    
+    cursor: pointer;
 
     @media (max-width: 1153px) {
         margin-left: 425px;
@@ -98,6 +87,7 @@ export const namectspan = styled.span`
     letter-spacing: normal;
     text-align: left;
     color: #d7d7d7;
+    cursor: pointer;
 `
 
 export const playerImg = styled.img`
@@ -106,4 +96,5 @@ export const playerImg = styled.img`
     margin-top: -150px;
     margin-left: 530px;
     border-radius: 8px;
+    cursor: pointer;
 `

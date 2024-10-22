@@ -8,6 +8,7 @@ export const logo = styled.img`
     margin-left: 310px;
     margin-top: 20px;
     background-color: #15171e;
+    cursor: pointer;
 
     @media (max-width: 1153px) {
         margin-left: 10px;
@@ -85,6 +86,7 @@ export const gologout = styled.span`
     letter-spacing: normal;
     text-align: left;
     color: #fff;
+    cursor: pointer;
 `
 
 export const introduce = styled.span`
