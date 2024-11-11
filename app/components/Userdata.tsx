@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "../styles/Userdata";
-import Modal from "./Modal";
+import Modal from "./UserModal";
 
 interface UserData {
     title: string;
@@ -21,10 +21,15 @@ function Userdata({ userDatas, onUserClick }: UserdataProps) {
         return text.length > 10 ? text.slice(0, 10) + "..." : text;
     };
 
+    function handleUrgent(){
+
+    }
+
     return (
         <div>
             {userDatas.map((userData, index) => (
                 <S.playerdiv key={index} onClick={() => onUserClick(userData)}>
+                    <S.urgentImg src="urgent.svg" />
                     <S.playerTitle>{truncateText(userData.title)}</S.playerTitle>
                     <br />
                     <S.playerDes>{truncateText(userData.content)}</S.playerDes>

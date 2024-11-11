@@ -19,16 +19,18 @@ function Write() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = localStorage.getItem("access_token"); // localStorage에서 access_token을 가져옴
-                const response = await axios.get(`https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro`, {
+                const token = localStorage.getItem("access_token");
+                const response = await axios.get(`https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/user-info`, {
                     headers: {
-                        Authorization: `Bearer ${token}`,  // 토큰을 Authorization 헤더에 추가
+                        Authorization: `Bearer ${token}`,
+                        'ngrok-skip-browser-warning': '69420',
                     }
                 });
-                const { school, student } = response.data;
+                console.log(response.data);
+                const { userSchool, userName } = response.data;
 
-                setSchoolName(school);
-                setStudentName(student);
+                setSchoolName(userSchool);
+                setStudentName(userName);
             } catch (error) {
                 console.log("학교 or 학생 정보를 받지 못했습니다.", error);
             }
@@ -98,7 +100,7 @@ function Write() {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            router.push("/");
+            router.push("/");       
         } catch (error) {
             console.log("내용 작성 실패", error);
         }

@@ -5,7 +5,8 @@ import axios from "axios";
 import * as S from "../styles/Main";
 import Nav from "../components/Nav";
 import Userdata from "../components/Userdata";
-import Modal from "../components/Modal";
+import Modal from "../components/UserModal";
+import Pagination from "../components/Pagination";
 
 interface UserData {
     title: string;
@@ -20,24 +21,27 @@ function Main() {
     const [userData, setUserData] = useState<UserData[]>([]);
     const [logined, setLogined] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [CurrentPage, SetCurrentPage] = useState(1);
+    const [TotalPage, SetTotalPage] = useState(1);
     const [selectedUser, setSelectedUser] = useState<UserData | null>(null);
-    const schoolListRef = useRef<HTMLDivElement | null>(null); // ref 추가
+    const schoolListRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
             setLogined(true);
-            fetchUserData(token, schoolValue);
+            fetchUserData(token, schoolValue, CurrentPage);
         } else {
             setLogined(false);
         }
-    }, [schoolValue]);
+    }, [schoolValue, CurrentPage]);
 
-    const fetchUserData = async (token: string, school?: string) => {
+    const fetchUserData = async (token: string, school?: string, page?: number) => {
         try {
+            const adjustedPage = (page ?? 1) - 1;
             const url = school 
-                ? `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school?school=${school}`
-                : `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school`;
+                ? `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school?school=${school}&page=${adjustedPage}`
+                : `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school?page=${adjustedPage}`;
             
             const response = await axios.get(url, {
                 headers: {
@@ -47,12 +51,14 @@ function Main() {
             });
             if (response.status === 200) {
                 const data = response.data;
+                const TotalPageCount = response.data.TotalPage;
 
                 if (Array.isArray(data)) {
                     setUserData(data);
+                    SetTotalPage(TotalPageCount);
                 } else {
                     setUserData([data]);
-                }
+                }   
 
                 console.log("데이터 get 성공");
                 console.log(data);
@@ -65,6 +71,10 @@ function Main() {
     const handleUserClick = (user: UserData) => {
         setSelectedUser(user);
         setModalOpen(true);
+    };
+
+    const handlePageChange = (newPage: number) => {
+        SetCurrentPage(newPage);
     };
 
     const truncateText = (text: string | undefined) => {
@@ -109,13 +119,20 @@ function Main() {
                             isSelected={schoolValue === "DAE_SOFTWARE_MAESTER"} 
                             onClick={() => setSchoolValue("DAE_SOFTWARE_MAESTER")}>대구</S.schoollist>
                     </S.schooldiv>
-
+                    
+                    <S.UserGap />
                     {userData.length > 0 && (
                         <Userdata
                             userDatas={userData}
                             onUserClick={handleUserClick}
                         />
                     )}
+                    
+                    <S.UserGap />
+                    <Pagination
+                        currentPage={CurrentPage}
+                        totalPage={TotalPage}
+                        onPageChange={handlePageChange} />
 
                     {modalOpen && selectedUser && (
                         <Modal user={selectedUser} onClose={() => setModalOpen(false)} />

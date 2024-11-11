@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Title = styled.span`
     width: 257px;
     height: 43px;
@@ -48,6 +47,10 @@ export const schooldiv = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 30px;    
+`
+
+export const UserGap = styled.div`
+    height: 62px;
 `
 
 export const schoollist = styled.div<{ isSelected: boolean }>`

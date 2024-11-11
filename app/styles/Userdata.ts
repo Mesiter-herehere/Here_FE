@@ -98,3 +98,8 @@ export const playerImg = styled.img`
     border-radius: 8px;
     cursor: pointer;
 `
+
+export const urgentImg = styled.img`
+    width: 24px;
+    height: 24px;
+`

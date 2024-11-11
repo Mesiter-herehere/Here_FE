@@ -137,7 +137,7 @@ function Signup() {
                             type={showPassword ? "text" : "password"} 
                             placeholder="ex) password" 
                         />
-                        {/* 비밀번호 보이기/숨기기 아이콘 */}
+
                         <S.IconWrapper onClick={() => setShowPassword(!showPassword)}>
                             {showPassword ? <AiFillEyeInvisible size={24} /> : <AiFillEye size={24} />}
                         </S.IconWrapper>

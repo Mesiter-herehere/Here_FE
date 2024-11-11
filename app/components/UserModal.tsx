@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import * as S from "../styles/Modal";
+import * as S from "../styles/UserModal";
 
 interface ModalProps {
     user: {
@@ -54,7 +54,7 @@ function Modal({ user, onClose }: ModalProps) {
                                     {user.userName}
                                 </S.namectspan>
                             </S.namect>
-                            {user.imageUrl && <img src={user.imageUrl} alt={`${user.userName}'s profile`} />}
+                            {user.imageUrl && <S.playerImg src={user.imageUrl} alt={`${user.userName}'s profile`} />}
                         </>
                     )
                 )}
