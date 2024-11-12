@@ -59,7 +59,7 @@ export const schoollist = styled.div<{ isSelected: boolean }>`
     flex-grow: 0;
     margin: 0 20px 0 0;
     padding: 14px 54px;
-    border: ${(props) => (props.isSelected ? 'solid 2px #FFFFFF' : 'none')};
+    border: ${({ isSelected }) => (isSelected ? 'solid 2px #FFFFFF' : 'none')};
     border-radius: 8px;
     background-color: #1d1f29;
     color: #FFFFFF;

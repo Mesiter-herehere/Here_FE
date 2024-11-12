@@ -11,8 +11,8 @@ interface UserData {
 }
 
 interface UserdataProps {
-    userDatas: UserData[];
-    onUserClick: (user: UserData) => void;
+   userDatas: { title: string; content: string; userSchool: string; userName: string; imageUrl?: string; }[];
+    onUserClick: (user: { title: string; content: string; userSchool: string; userName: string; imageUrl?: string; }) => void;
 }
 
 function Userdata({ userDatas, onUserClick }: UserdataProps) {

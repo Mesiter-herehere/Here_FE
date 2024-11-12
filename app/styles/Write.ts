@@ -38,7 +38,7 @@ export const description = styled.span`
 export const schoolct = styled.div`
     width: 305px;
     height: 44px;
-    margin: 38px 11px -18px 440px;
+    margin: 38px 11px -33px 440px;
     padding: 11px 35px 12px 36px;
     border-radius: 20px;
     background-color: #343539;

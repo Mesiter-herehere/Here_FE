@@ -36,9 +36,9 @@ function Main() {
         }
     }, [schoolValue, CurrentPage]);
 
-    const fetchUserData = async (token: string, school?: string, page?: number) => {
+    const fetchUserData = async (token: string, school?: string, pageNumber?: number) => {
         try {
-            const adjustedPage = (page ?? 1) - 1;
+            const adjustedPage = (pageNumber ?? 1) - 1;
             const url = school 
                 ? `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school?school=${school}&page=${adjustedPage}`
                 : `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school?page=${adjustedPage}`;
@@ -49,17 +49,19 @@ function Main() {
                     'ngrok-skip-browser-warning': '69420',
                 }
             });
+            
             if (response.status === 200) {
                 const data = response.data;
-                const TotalPageCount = response.data.TotalPage;
-
-                if (Array.isArray(data)) {
-                    setUserData(data);
+                const TotalPageCount = data.totalPages;
+    
+                if (Array.isArray(data.content)) {
+                    setUserData(data.content); // userData에 content 배열 설정
                     SetTotalPage(TotalPageCount);
                 } else {
-                    setUserData([data]);
-                }   
-
+                    setUserData([]); // 데이터가 없을 때 빈 배열 설정
+                    SetTotalPage(TotalPageCount);
+                }
+    
                 console.log("데이터 get 성공");
                 console.log(data);
             }
@@ -67,6 +69,7 @@ function Main() {
             console.error("유저 데이터 요청 실패:", error);
         }
     };
+    
 
     const handleUserClick = (user: UserData) => {
         setSelectedUser(user);
@@ -75,11 +78,6 @@ function Main() {
 
     const handlePageChange = (newPage: number) => {
         SetCurrentPage(newPage);
-    };
-
-    const truncateText = (text: string | undefined) => {
-        if (!text) return "";
-        return text.length > 10 ? text.slice(0, 10) + "..." : text;
     };
 
     const handleClickOutside = (event: MouseEvent) => {
