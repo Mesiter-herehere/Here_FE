@@ -70,7 +70,6 @@ function Main() {
         }
     };
     
-
     const handleUserClick = (user: UserData) => {
         setSelectedUser(user);
         setModalOpen(true);
@@ -78,6 +77,7 @@ function Main() {
 
     const handlePageChange = (newPage: number) => {
         SetCurrentPage(newPage);
+        fetchUserData(localStorage.getItem('access_token') || "", schoolValue, newPage);
     };
 
     const handleClickOutside = (event: MouseEvent) => {
