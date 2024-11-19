@@ -101,9 +101,9 @@ function Main() {
 
             {logined ? (
                 <>
-                    <S.Title>‘저’를 소개합니다!</S.Title>
+                    <S.Title>프로젝트를 기다리고 있어요.</S.Title>
                     <br />
-                    <S.LightTitle>저를 미리 알고 가면 좋을껄요?</S.LightTitle>
+                    <S.LightTitle>함께 프로젝트 할 팀원을 선택해요.</S.LightTitle>
 
                     <S.schooldiv ref={schoolListRef}>
                         <S.schoollist
@@ -145,11 +145,11 @@ function Main() {
                 </>
             ) : (
                 <>
-                    <S.Title>‘저’를 소개합니다!</S.Title>
+                    <S.Title>프로젝트를 기다리고 있어요.</S.Title>
                     <br />
-                    <S.LightTitle>저를 미리 알고 가면 좋을껄요?</S.LightTitle>
+                    <S.LightTitle>함께 프로젝트 할 팀원을 선택해요.</S.LightTitle>
                     <br />
-                    <S.assent href="Signin">로그인 후 서비스를 이용해주세요.</S.assent>
+                    <S.assent href="Signin">로그인을 하면 서비스를 이용할 수 있어요.</S.assent>
                 </>
             )}
         </>

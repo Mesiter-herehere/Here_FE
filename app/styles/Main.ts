@@ -3,22 +3,26 @@ import styled from "styled-components";
 export const Title = styled.span`
     width: 257px;
     height: 43px;
+    margin-top: -180px; 
     margin-left: 447.6px;
     font-family: Pretendard;
     font-size: 43px;
     font-weight: bold;
     text-align: left;
     color: #fff;
+    
 
     @media (max-width: 1153px) {
         margin-left: 190px;
+        margin-top: -150px;
     }
 `
 
 export const LightTitle = styled.span`
     width: 214px;
     height: 21px;
-    margin-left: 470px;
+    margin-left: 448px;
+    margin-top: -10px;  
     font-family: Pretendard;
     font-size: 18px;
     font-weight: normal;
@@ -27,6 +31,7 @@ export const LightTitle = styled.span`
 
     @media (max-width: 1153px) {
         margin-left: 210px;
+        margin-top: -10px;  
     }
 `
 
@@ -34,23 +39,23 @@ export const assent = styled.a`
     display: flex;
     width: auto;
     height: auto;
-    margin-top: 216px;
+    margin-top: 186px;  
     justify-content: center;
     font-family: Pretendard;
     font-size: 36px;
     font-weight: bold;
     text-align: left;
-    color: #fff;
+    color: #8f8f8f;
 `
 
 export const schooldiv = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 30px;    
+    margin-top: -30px;  
 `
 
 export const UserGap = styled.div`
-    height: 62px;
+    height: 32px;  
 `
 
 export const schoollist = styled.div<{ isSelected: boolean }>`
