@@ -41,3 +41,42 @@ export const Button = styled.button`
     background: #1D1F29;
     border-radius: 8px;
 `
+
+export const modalopenbutton = styled.button`
+    cursor: pointer;
+    margin-left: auto;
+  `
+
+export const modalclosebutton = styled.button`
+    cursor: pointer;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 685px;
+    top: 34px;
+    color: white;
+ `
+
+export const modalcontainer = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+`
+
+export const modalcontent = styled.div`
+    position: absolute;
+    width: 756px;
+    height: 497px;
+    left: calc(50% - 756px/2 + 1px);
+    top: 253px;
+
+    background: #15171E;
+    border-radius: 13px;
+
+`

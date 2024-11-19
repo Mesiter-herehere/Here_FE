@@ -108,7 +108,6 @@ function Write() {
 
     return (
         <>
-            <Nav />
             <S.gap />
             <S.Title> 🤩 마음껏 뽐내보세요</S.Title>
             <br />

@@ -11,7 +11,7 @@ interface UserData {
 }
 
 interface UserdataProps {
-   userDatas: { title: string; content: string; userSchool: string; userName: string; imageUrl?: string; }[];
+    userDatas: { title: string; content: string; userSchool: string; userName: string; imageUrl?: string; }[];
     onUserClick: (user: { title: string; content: string; userSchool: string; userName: string; imageUrl?: string; }) => void;
 }
 
@@ -20,10 +20,6 @@ function Userdata({ userDatas, onUserClick }: UserdataProps) {
         if (!text) return "";
         return text.length > 10 ? text.slice(0, 10) + "..." : text;
     };
-
-    function handleUrgent(){
-
-    }
 
     return (
         <div>

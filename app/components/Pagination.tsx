@@ -17,7 +17,7 @@ function Pagination({currentPage, totalPage, onPageChange}: PaginationProps){
     };
 
     const handlePrevPage = () => {
-        if (currentPage > 1) {
+        if (currentPage > 1) {  
             onPageChange(currentPage - 1);
         }
     };

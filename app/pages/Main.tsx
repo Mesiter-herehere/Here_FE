@@ -6,6 +6,7 @@ import * as S from "../styles/Main";
 import Nav from "../components/Nav";
 import Userdata from "../components/Userdata";
 import Modal from "../components/UserModal";
+import UrgentModal from "../components/UrgentModal";
 import Pagination from "../components/Pagination";
 
 interface UserData {
@@ -21,6 +22,7 @@ function Main() {
     const [userData, setUserData] = useState<UserData[]>([]);
     const [logined, setLogined] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [urgentmodalOpen, setUrgentModalOpen] = useState(false);
     const [CurrentPage, SetCurrentPage] = useState(1);
     const [TotalPage, SetTotalPage] = useState(1);
     const [selectedUser, setSelectedUser] = useState<UserData | null>(null);
@@ -135,6 +137,11 @@ function Main() {
                     {modalOpen && selectedUser && (
                         <Modal user={selectedUser} onClose={() => setModalOpen(false)} />
                     )}
+
+                    {urgentmodalOpen && (
+                        <UrgentModal onClose={() => setUrgentModalOpen(false)} />
+                    )}
+
                 </>
             ) : (
                 <>
