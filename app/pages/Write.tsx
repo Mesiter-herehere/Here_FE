@@ -20,7 +20,7 @@ function Write() {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem("access_token");
-                const response = await axios.get(`https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/user-info`, {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/self-intro/user-info`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'ngrok-skip-browser-warning': '69420',
@@ -33,7 +33,7 @@ function Write() {
                 setStudentName(userName || "");
 
                 const introResponse = await axios.get(
-                    'https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/inquiry',
+                    `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/self-intro/inquiry`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -112,7 +112,7 @@ function Write() {
             const token = localStorage.getItem("access_token");
 
             await axios.put(
-                'https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro',
+                `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/self-intro`,
                 formData,
                 {
                     headers: {

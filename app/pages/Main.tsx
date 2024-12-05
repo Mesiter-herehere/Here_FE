@@ -42,8 +42,8 @@ function Main() {
         try {
             const adjustedPage = (pageNumber ?? 1) - 1;
             const url = school 
-                ? `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school?school=${school}&page=${adjustedPage}`
-                : `https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/main/school?page=${adjustedPage}`;
+                ? `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/self-intro/main/school?school=${school}&page=${adjustedPage}`
+                : `${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/self-intro/main/school?page=${adjustedPage}`;
             
             const response = await axios.get(url, {
                 headers: {
