@@ -8,12 +8,12 @@ import Nav from "../components/Nav";
 
 function Write() {
     const router = useRouter();
-    const [titleValue, setTitleValue] = useState("");
-    const [containValue, setContainValue] = useState("");
+    const [titleValue, setTitleValue] = useState<string>("");
+    const [containValue, setContainValue] = useState<string>("");
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [imageSrc, setImageSrc] = useState<string | null>(null);
-    const [schoolName, setSchoolName] = useState("");
-    const [studentName, setStudentName] = useState("");
+    const [schoolName, setSchoolName] = useState<string>("");
+    const [studentName, setStudentName] = useState<string>("");
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
@@ -29,10 +29,26 @@ function Write() {
                 console.log(response.data);
                 const { userSchool, userName } = response.data;
 
-                setSchoolName(userSchool);
-                setStudentName(userName);
+                setSchoolName(userSchool || "");
+                setStudentName(userName || "");
+
+                const introResponse = await axios.get(
+                    'https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro/inquiry',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            'ngrok-skip-browser-warning': '69420',
+                        },
+                    }
+                );
+
+                const { title, content, imageUrl } = introResponse.data;
+                setTitleValue(title || "");
+                setContainValue(content || "");
+                setImageSrc(imageUrl || "");
+                
             } catch (error) {
-                console.log("학교 or 학생 정보를 받지 못했습니다.", error);
+                console.log("자기소개서 관련 정보를 받지 못했습니다.", error);
             }
         };
 
@@ -94,15 +110,20 @@ function Write() {
 
         try {
             const token = localStorage.getItem("access_token");
-            await axios.post(`https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${token}`,
+
+            await axios.put(
+                'https://endlessly-cuddly-salmon.ngrok-free.app/api/self-intro',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
-            });
+            );
             router.push("/");       
         } catch (error) {
-            console.log("내용 작성 실패", error);
+            console.log("내용 작성 및 수정 과정에 오류가 생겼습니다.", error);
         }
     };
 
