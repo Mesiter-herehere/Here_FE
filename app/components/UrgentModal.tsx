@@ -31,14 +31,17 @@ function UrgentModal({ onClose }: ModalProps) {
             }}
         >
             <S.modalcontent>
-                <h2>신고하기</h2>
-                <textarea
+                <S.Title>신고하신 이유를 작성해 주세요.</S.Title>
+                <S.CloseButton onClick={onClose}>×</S.CloseButton>
+                <S.TextArea
                     value={reportReason}
                     onChange={(e) => setReportReason(e.target.value)}
                     placeholder="신고 사유를 입력해주세요"
                 />
-                <button onClick={handleSubmit}>신고하기</button>
-                <S.modalclosebutton onClick={onClose}>⨉</S.modalclosebutton>
+                <S.ButtonContainer>
+                    <S.ConfirmButton onClick={handleSubmit}>확인</S.ConfirmButton>
+                    <S.CancelButton onClick={onClose}>취소</S.CancelButton>
+                </S.ButtonContainer>
             </S.modalcontent>
         </S.modalcontainer>
     );
