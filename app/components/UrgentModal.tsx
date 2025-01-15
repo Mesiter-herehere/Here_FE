@@ -12,12 +12,20 @@ function UrgentModal({ onClose }: ModalProps) {
     const [reportReason, setReportReason] = useState("");
     
     const handleSubmit = async () => {
+        if (!reportReason.trim()) {
+            // 내용이 비어있는 경우
+            alert("신고 이유를 입력해주세요.");
+            return;
+        }
+
         try {
             // 신고 API 호출 로직 구현
             // await axios.post(...);
+            alert("성공적으로 신고가 되었습니다.");
             onClose();
         } catch (error) {
             console.error("신고 제출 실패:", error);
+            alert("신고 처리 중 오류가 발생했습니다.");
         }
     };
     
