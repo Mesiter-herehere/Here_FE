@@ -125,6 +125,7 @@ function Main() {
                         <Userdata
                             userDatas={userData}
                             onUserClick={handleUserClick}
+                            onUrgentClick={() => setUrgentModalOpen(true)}
                         />
                     )}
                     
