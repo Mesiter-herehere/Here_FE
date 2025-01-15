@@ -1,82 +1,89 @@
 import styled from "styled-components";
 
-export const Back = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-`
-
-export const UrgentBox = styled.div`
-    width: 35vw;
-    height: 332px;
-    background-color: #15171E;
-`
-
-export const UrgentTitle = styled.span`
-    color: white;
-    font-size: 30px;
-    font-family: Pretendard;
-    font-weight: 500;
-`
-
-export const UrgentInput = styled.input`
-    width: 80%;
-    height: 56px;
-    background-color: #242630;
-    color: #E1E1E1;
-
-    font-family: Pretendard;
-`
-
-export const Buttons = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-`
-
-export const Button = styled.button`
-    width: 86px;
-    height: 41px;
-    background: #1D1F29;
-    border-radius: 8px;
-`
-
-export const modalopenbutton = styled.button`
-    cursor: pointer;
-    margin-left: auto;
-  `
-
-export const modalclosebutton = styled.button`
-    cursor: pointer;
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    left: 685px;
-    top: 34px;
-    color: white;
- `
-
 export const modalcontainer = styled.div`
-    width: 100%;
-    height: 100%;
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5);
-`
+    z-index: 1000;
+`;
 
 export const modalcontent = styled.div`
+    position: relative;
+    width: 500px;
+    background: #1A1B23;
+    border-radius: 12px;
+    padding: 30px;
+`;
+
+export const Title = styled.h2`
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 700;
+`;
+
+export const CloseButton = styled.button`
     position: absolute;
-    width: 756px;
-    height: 497px;
-    left: calc(50% - 756px/2 + 1px);
-    top: 253px;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+`;
 
-    background: #15171E;
-    border-radius: 13px;
+export const TextArea = styled.textarea`
+    width: 100%;
+    height: 200px;
+    background: #242630;
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    resize: none;
+    margin-bottom: 20px;
 
-`
+    &::placeholder {
+        color: #666;
+        font-weight: 400;
+    }
+
+    &:focus {
+        outline: none;
+    }
+`;
+
+export const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+`;
+
+export const Button = styled.button`
+    padding: 10px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+`;
+
+export const ConfirmButton = styled(Button)`
+    background: #242630;
+    color: white;
+`;
+
+export const CancelButton = styled(Button)`
+    background: #242630;
+    color: white;
+`;

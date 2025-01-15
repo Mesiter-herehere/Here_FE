@@ -12,12 +12,20 @@ function UrgentModal({ onClose }: ModalProps) {
     const [reportReason, setReportReason] = useState("");
     
     const handleSubmit = async () => {
+        if (!reportReason.trim()) {
+            // 내용이 비어있는 경우
+            alert("신고 이유를 입력해주세요.");
+            return;
+        }
+
         try {
             // 신고 API 호출 로직 구현
             // await axios.post(...);
+            alert("성공적으로 신고가 되었습니다.");
             onClose();
         } catch (error) {
             console.error("신고 제출 실패:", error);
+            alert("신고 처리 중 오류가 발생했습니다.");
         }
     };
     
@@ -31,14 +39,17 @@ function UrgentModal({ onClose }: ModalProps) {
             }}
         >
             <S.modalcontent>
-                <h2>신고하기</h2>
-                <textarea
+                <S.Title>신고하신 이유를 작성해 주세요.</S.Title>
+                <S.CloseButton onClick={onClose}>×</S.CloseButton>
+                <S.TextArea
                     value={reportReason}
                     onChange={(e) => setReportReason(e.target.value)}
                     placeholder="신고 사유를 입력해주세요"
                 />
-                <button onClick={handleSubmit}>신고하기</button>
-                <S.modalclosebutton onClick={onClose}>⨉</S.modalclosebutton>
+                <S.ButtonContainer>
+                    <S.ConfirmButton onClick={handleSubmit}>확인</S.ConfirmButton>
+                    <S.CancelButton onClick={onClose}>취소</S.CancelButton>
+                </S.ButtonContainer>
             </S.modalcontent>
         </S.modalcontainer>
     );
